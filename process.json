@@ -1,0 +1,18 @@
+{
+	"apps": [{
+		"name": "app-mock",
+		"script": "./mock/app.js",
+		"instances": "1",
+		"exec_mode": "fork",
+		"env": {
+			"NODE_ENV": "dev"
+		},
+		"env_dev": {
+			"NODE_ENV": "dev"
+		},
+		"env_prod": {
+			"NODE_ENV": "prod"
+		},
+		"watch": ["./mock"]
+	}]
+}
