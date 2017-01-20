@@ -1,19 +1,47 @@
 <template>
 <div id="app">
-	<div class="test">提交</div>
+	<loading class="loading-ps" :show="show"></loading>
+	<router-view @nextpage="nextPage"></router-view>
 </div>
 </template>
 
 <style lang="sass" scoped>
 	@import '../style/common';
 	@import '../style/flexible';
-	.test {
-		width: p2r(375);
-		@include ft(20px);
+
+	#app {
+		background: url('../assets/images/bg-1.jpg') 0 0/cover no-repeat;
+	}
+	.bg {
+		width: 100%;
+		display: block;
+	}
+	.loading-ps {
+		position: absolute!important;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto;
 	}
 </style>
 
 <script>
 	import '../style/_reset.scss';
-	export default {};
+	import loading from './loading';
+	export default {
+		data() {
+			return {
+				show: true
+			};
+		},
+		methods: {
+			nextPage() {
+				this.show = false;
+			}
+		},
+		components: {
+			loading
+		}
+	};
 </script>

@@ -24,7 +24,7 @@ module.exports = {
 	},
 	output: {
 		path: OUTPUT_PATH,
-		publicPath: 'http://localhost:8080/',
+		publicPath: 'http://192.168.2.122:8080/',
 		filename: 'scripts/[name].js'
 	},
 	resolve: {

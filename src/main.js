@@ -1,10 +1,17 @@
 import Vue from 'vue';
+import VueRouter from 'vue-router';
 import Apis from 'st-api';
-// import router from './config/router.base';
+import routes from './config/routes.base';
 import app from './components/app';
 import HttpClient from './lib/http-client';
 import apiConfig from './config/apiconf.base';
 import './lib/flexible';
+
+Vue.use(VueRouter);
+
+let router = new VueRouter({
+	routes
+});
 
 let client = new HttpClient();
 let apis = new Apis(apiConfig, client);
@@ -18,6 +25,6 @@ $(() => {
 		components: {
 			app
 		},
-		// router
+		router
 	});
 });
