@@ -1,40 +1,43 @@
 <template>
 <div class="page-1">
 	<div class="container">
-		<img src="../assets/images/food-0.png" class="food">
-		<img src="../assets/images/choose.png" class="choose" v-show="!showAnswerDetail">
+		<img src="../assets/images/food-1.png" class="food">
+		<div class="hear-bar" v-show="!showAnswerDetail">
+			<img src="../assets/images/hear-desc.png" class="hear-desc">
+			<img src="../assets/images/hear-btn.png" class="hear-btn">
+		</div>
 		<transition name="show-question" @after-leave="answerDetail">
 			<div class="answer-bar" v-show="showQuestion" style="display: none">
 				<div class="wrapper">
 					<img src="../assets/images/right.png" class="answer" style="display: none" v-show="showAnswer==0">
 					<div class="placeholder" v-show="lock && showAnswer!=0" style="display: none"></div>
-					<img src="../assets/images/btn-2.png" class="answer-btn" @click="answer(0)">
+					<img src="../assets/images/btn-3.png" class="answer-btn" @click="answer(0)">
 				</div>
 				<div class="wrapper">
 					<img src="../assets/images/wrong.png" class="answer" style="display: none" v-show="showAnswer==1">
 					<div class="placeholder" v-show="lock && showAnswer!=1" style="display: none"></div>
-					<img src="../assets/images/btn-0.png" class="answer-btn" @click="answer(1)">
+					<img src="../assets/images/btn-4.png" class="answer-btn" @click="answer(1)">
 				</div>
 				<div class="wrapper">
 					<img src="../assets/images/wrong.png" class="answer" style="display: none" v-show="showAnswer==2">
 					<div class="placeholder" v-show="lock && showAnswer!=2" style="display: none"></div>
-					<img src="../assets/images/btn-1.png" class="answer-btn" @click="answer(2)">
+					<img src="../assets/images/btn-5.png" class="answer-btn" @click="answer(2)">
 				</div>
 			</div>
 		</transition>
 		<transition name="show-answer">
 			<div class="answer-detail" v-show="showDetail">
 				<div class="location-bar">
-					<img src="../assets/images/location-0.png" class="location">
+					<img src="../assets/images/location-1.png" class="location">
 				</div>
 				<div class="food-name">
-					<img src="../assets/images/food-name-0.png">
+					<img src="../assets/images/food-name-1.png">
 				</div>
 				<div class="food-intro">
-					<img src="../assets/images/food-intro-0.png">
+					<img src="../assets/images/food-intro-1.png">
 				</div>
 				<div class="next-bar">
-					<img src="../assets/images/next-btn.png" class="next-btn" @click="goNext">
+					<img src="../assets/images/next-btn.png" class="next-btn">
 				</div>
 			</div>
 		</transition>
@@ -68,6 +71,21 @@
 		z-index: 10;
 	}
 
+	.hear-bar {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		margin-top: p2r(30);
+		padding-left: p2r(99);
+		.hear-desc {
+			width: p2r(234);
+		}
+		.hear-btn {
+			width: p2r(263);
+			margin-left: p2r(55);
+		}
+	}
+
 	.show-question-enter, .show-question-leave-active {
 		opacity: 0;
 	}
@@ -77,7 +95,7 @@
 	}
 	
 	.answer-bar {
-		margin: p2r(50) p2r(108);
+		margin: p2r(35) p2r(108);
 		display: flex;
 		justify-content: space-between;
 		flex-direction: row;
@@ -195,9 +213,6 @@
 			},
 			answerDetail() {
 				this.showDetail = true;
-			},
-			goNext() {
-				this.$emit('nextpage');
 			}
 		}
 	};
