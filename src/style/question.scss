@@ -1,0 +1,12 @@
+@import './flexible';
+.food {
+	width: p2r(713);
+	display: block;
+	margin: p2r(148) auto 0;
+}
+
+.choose {
+	width: 100%;
+	display: block;
+	margin-top: p2r(30);
+}

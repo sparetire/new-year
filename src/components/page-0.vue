@@ -1,6 +1,5 @@
 <template>
 <div class="page-0">
-	<img src="../assets/images/bg-0.jpg" class="bg">
 	<transition name="show-text">
 		<div class="container" v-show="showText">
 			<img src="../assets/images/text-0.png" class="text text-0">
@@ -20,12 +19,10 @@
 	@import '../style/flexible';
 	.page-0 {
 		width: 100%;
-		position: relative;
-	}
-	
-	.bg {
-		width: 100%;
-		display: block;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
 	}
 	
 	.container {
@@ -37,22 +34,22 @@
 		z-index: 10;
 		.text {
 			width: 100%;
-			transition: opacity 3s ease;
+			transition: opacity 2s ease;
 		}
 		.text-0 {
 			margin-top: p2r(928);
 		}
 		.text-1 {
-			transition-delay: 2s;
+			transition-delay: 1.5s;
 		}
 		.text-2 {
-			transition-delay: 4s;
+			transition-delay: 3s;
 		}
 		.text-3 {
-			transition-delay: 6s;
+			transition-delay: 4.5s;
 		}
 		.text-4 {
-			transition-delay: 8s;
+			transition-delay: 6s;
 		}
 	}
 
@@ -61,7 +58,7 @@
 			opacity: 0;
 		}
 	}
-	.show-text-to {
+	.show-text-enter-to {
 		.text {
 			opacity: 1;
 		}
@@ -90,7 +87,8 @@
 		},
 		mounted() {
 			setTimeout(() => this.showText = true, 1000);
-			this.$emit('nextpage');
+			setTimeout(() => this.$emit('nextpage'), 10000);
+			this.$emit('pagedone');
 		}
 	};
 </script>
