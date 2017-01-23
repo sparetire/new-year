@@ -127,7 +127,7 @@ module.exports = {
 			loader: 'url',
 			include: APP_PATH,
 			query: {
-				limit: 10000,
+				limit: 35000,
 				name: 'images/[name].[ext]?[hash]'
 			}
 		}, {
@@ -137,6 +137,14 @@ module.exports = {
 			query: {
 				limit: 10000,
 				name: 'fonts/[name].[hash:7].[ext]'
+			}
+		}, {
+			test: /.(mp3|m4a)(\?.*)?/,
+			loader: 'url',
+			include: APP_PATH,
+			query: {
+				limit: 20000,
+				name: 'audio/[name].[hash:7].[ext]'
 			}
 		}, {
 			test: require.resolve('zepto-wrapper'),
