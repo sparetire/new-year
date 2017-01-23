@@ -24,7 +24,7 @@ module.exports = {
 	},
 	output: {
 		path: OUTPUT_PATH,
-		publicPath: 'http://192.168.2.122:8080/',
+		publicPath: 'http://192.168.1.105:8080/',
 		filename: 'scripts/[name].js'
 	},
 	resolve: {
@@ -126,7 +126,7 @@ module.exports = {
 			loader: 'style!css!postcss'
 		}, {
 			test: /\.s[ac]ss$/,
-			loader: 'style-loader!css-loader!postcss-loader!sass-loader?sourceMap'
+			loader: 'style-loader!css-loader!sass-loader!postcss-loader?sourceMap'
 		}, {
 			test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
 			loader: 'url',

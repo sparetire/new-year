@@ -8,21 +8,14 @@
 <style lang="sass" scoped>
 	@import '../style/common';
 	@import '../style/flexible';
-
-	#app {
-		background: url('../assets/images/bg-1.jpg') 0 0/cover no-repeat;
-	}
-	.bg {
-		width: 100%;
-		display: block;
-	}
+	
 	.loading-ps {
 		position: absolute!important;
-		top: 0;
+		top: p2r(900);
 		left: 0;
 		right: 0;
-		bottom: 0;
 		margin: auto;
+		z-index: 50;
 	}
 </style>
 

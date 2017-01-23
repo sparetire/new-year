@@ -1,5 +1,18 @@
 <template>
-<div class="page-0">aaaaa</div>
+<div class="page-0">
+	<img src="../assets/images/bg-0.jpg" class="bg">
+	<transition name="show-text">
+		<div class="container" v-show="showText">
+			<img src="../assets/images/text-0.png" class="text text-0">
+			<img src="../assets/images/text-1.png" class="text text-1">
+			<img src="../assets/images/text-2.png" class="text text-2">
+			<img src="../assets/images/text-3.png" class="text text-3">
+			<img src="../assets/images/text-4.png" class="text text-4">
+		</div>
+	</transition>
+	<img src="../assets/images/logo-0.png" class="logo-0">
+	<img src="../assets/images/logo-1.png" class="logo-1">
+</div>
 </template>
 
 <style lang="sass" scoped>
@@ -7,18 +20,76 @@
 	@import '../style/flexible';
 	.page-0 {
 		width: 100%;
-		height: 100%;
-		background: url('../assets/images/bg-0.jpg') 0 0/cover no-repeat;
+		position: relative;
+	}
+	
+	.bg {
+		width: 100%;
+		display: block;
+	}
+	
+	.container {
+		width: 100%;
+		display: block;
 		position: absolute;
 		top: 0;
 		left: 0;
+		z-index: 10;
+		.text {
+			width: 100%;
+			transition: opacity 3s ease;
+		}
+		.text-0 {
+			margin-top: p2r(928);
+		}
+		.text-1 {
+			transition-delay: 2s;
+		}
+		.text-2 {
+			transition-delay: 4s;
+		}
+		.text-3 {
+			transition-delay: 6s;
+		}
+		.text-4 {
+			transition-delay: 8s;
+		}
+	}
+
+	.show-text-enter {
+		.text {
+			opacity: 0;
+		}
+	}
+	.show-text-to {
+		.text {
+			opacity: 1;
+		}
+	}
+	.logo-0 {
+		width: p2r(187);
+		position: absolute;
+		left: p2r(64);
+		bottom: p2r(46);
+	}
+	.logo-1 {
+		width: p2r(300);
+		position: absolute;
+		right: p2r(64);
+		bottom: p2r(62);
 	}
 </style>
 
 <script>
 	import '../style/_reset.scss';
 	export default {
+		data() {
+			return {
+				showText: false
+			};
+		},
 		mounted() {
+			setTimeout(() => this.showText = true, 1000);
 			this.$emit('nextpage');
 		}
 	};

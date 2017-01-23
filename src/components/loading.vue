@@ -14,25 +14,41 @@
 		height: p2r(80);
 		display: inline-block;
 		position: relative;
+		-webkit-transition: opacity 0.3s ease;
 		transition: opacity 0.3s ease;
 	}
 	
 	.icon-spinner9 {
 		color: #49372b;
 		display: inline-block;
+		-webkit-animation: whirl 1.5s ease infinite;
 		animation: whirl 1.5s ease infinite;
 		position: absolute;
 		top: 50%;
 		left: 50%;
+		-webkit-transform: translate(-50%, -50%);
 		transform: translate(-50%, -50%);
 		@include ft(30px);
 	}
 	
-	@keyframes whirl {
+	@-webkit-keyframes whirl {
 		from {
+			-webkit-transform: translate(-50%, -50%) rotate(0deg);
 			transform: translate(-50%, -50%) rotate(0deg);
 		}
 		to {
+			-webkit-transform: translate(-50%, -50%) rotate(0deg);
+			transform: translate(-50%, -50%) rotate(359deg);
+		}
+	}
+	
+	@keyframes whirl {
+		from {
+			-webkit-transform: translate(-50%, -50%) rotate(0deg);
+			transform: translate(-50%, -50%) rotate(0deg);
+		}
+		to {
+			-webkit-transform: translate(-50%, -50%) rotate(0deg);
 			transform: translate(-50%, -50%) rotate(359deg);
 		}
 	}
