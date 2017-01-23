@@ -2,6 +2,7 @@ const page0 = resolve => require(['../components/page-0'], resolve);
 const page1 = resolve => require(['../components/page-1'], resolve);
 const page2 = resolve => require(['../components/page-2'], resolve);
 const page3 = resolve => require(['../components/page-3'], resolve);
+const page4 = resolve => require(['../components/page-4'], resolve);
 
 const routes = [{
 	name: 'page0',
@@ -19,6 +20,10 @@ const routes = [{
 	name: 'page3',
 	path: '/page-3',
 	component: page3
+}, {
+	name: 'page4',
+	path: '/page-4',
+	component: page4
 }, {
 	path: '*',
 	redirect: '/page-0'

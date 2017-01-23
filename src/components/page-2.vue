@@ -170,6 +170,7 @@
 		left: 0;
 		bottom: p2r(190);
 		text-align: center;
+		z-index: 70;
 		.next-btn {
 			width: p2r(95);
 		}
