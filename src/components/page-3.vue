@@ -1,37 +1,37 @@
 <template>
-<div class="page-1">
+<div class="page-3">
 	<div class="container">
-		<img src="../assets/images/food-0.png" class="food">
+		<img src="../assets/images/food-2.png" class="food">
 		<img src="../assets/images/choose.png" class="choose" v-show="!showAnswerDetail">
 		<transition name="show-question" @after-leave="answerDetail">
 			<div class="answer-bar" v-show="showQuestion" style="display: none">
 				<div class="wrapper">
-					<img src="../assets/images/right.png" class="answer" style="display: none" v-show="showAnswer==0">
+					<img src="../assets/images/wrong.png" class="answer" style="display: none" v-show="showAnswer==0">
 					<div class="placeholder" v-show="lock && showAnswer!=0" style="display: none"></div>
 					<img src="../assets/images/btn-2.png" class="answer-btn" @click="answer(0)">
 				</div>
 				<div class="wrapper">
 					<img src="../assets/images/wrong.png" class="answer" style="display: none" v-show="showAnswer==1">
 					<div class="placeholder" v-show="lock && showAnswer!=1" style="display: none"></div>
-					<img src="../assets/images/btn-0.png" class="answer-btn" @click="answer(1)">
+					<img src="../assets/images/btn-6.png" class="answer-btn" @click="answer(1)">
 				</div>
 				<div class="wrapper">
-					<img src="../assets/images/wrong.png" class="answer" style="display: none" v-show="showAnswer==2">
+					<img src="../assets/images/right.png" class="answer" style="display: none" v-show="showAnswer==2">
 					<div class="placeholder" v-show="lock && showAnswer!=2" style="display: none"></div>
-					<img src="../assets/images/btn-1.png" class="answer-btn" @click="answer(2)">
+					<img src="../assets/images/btn-7.png" class="answer-btn" @click="answer(2)">
 				</div>
 			</div>
 		</transition>
 		<transition name="show-answer">
 			<div class="answer-detail" v-show="showDetail">
 				<div class="location-bar">
-					<img src="../assets/images/location-0.png" class="location">
+					<img src="../assets/images/location-2.png" class="location">
 				</div>
 				<div class="food-name">
-					<img src="../assets/images/food-name-0.png">
+					<img src="../assets/images/food-name-2.png">
 				</div>
 				<div class="food-intro">
-					<img src="../assets/images/food-intro-0.png">
+					<img src="../assets/images/food-intro-2.png">
 				</div>
 			</div>
 		</transition>
@@ -46,7 +46,7 @@
 <style lang="sass" scoped>
 	@import '../style/common';
 	@import '../style/flexible';
-	.page-1 {
+	.page-3 {
 		width: 100%;
 		height: 100%;
 		position: absolute;
@@ -128,6 +128,17 @@
 		}
 	}
 
+	.next-bar {
+		width: 100%;
+		position: absolute;
+		left: 0;
+		bottom: p2r(190);
+		text-align: center;
+		.next-btn {
+			width: p2r(95);
+		}
+	}
+
 	.show-answer-enter {
 		.food-name {
 			opacity: 0;
@@ -143,17 +154,6 @@
 		}
 		.food-intro {
 			opacity: 1;
-		}
-	}
-	
-	.next-bar {
-		width: 100%;
-		position: absolute;
-		left: 0;
-		bottom: p2r(190);
-		text-align: center;
-		.next-btn {
-			width: p2r(95);
 		}
 	}
 

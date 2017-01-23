@@ -68,6 +68,7 @@
 		},
 		methods: {
 			nextPage() {
+				this.show = true;
 				++this.page;
 				this.$router.push(`page-${this.page}`);
 			},

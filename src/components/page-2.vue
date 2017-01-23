@@ -1,5 +1,5 @@
 <template>
-<div class="page-1">
+<div class="page-2">
 	<div class="container">
 		<img src="../assets/images/food-1.png" class="food">
 		<div class="hear-bar" v-show="!showAnswerDetail">
@@ -36,11 +36,11 @@
 				<div class="food-intro">
 					<img src="../assets/images/food-intro-1.png">
 				</div>
-				<div class="next-bar">
-					<img src="../assets/images/next-btn.png" class="next-btn">
-				</div>
 			</div>
 		</transition>
+	</div>
+	<div class="next-bar" v-show="showDetail" style="display: none">
+		<img src="../assets/images/next-btn.png" class="next-btn" @click="goNext">
 	</div>
 	<img src="../assets/images/footer.png" class="footer">
 </div>
@@ -49,7 +49,7 @@
 <style lang="sass" scoped>
 	@import '../style/common';
 	@import '../style/flexible';
-	.page-1 {
+	.page-2 {
 		width: 100%;
 		height: 100%;
 		position: absolute;
@@ -133,7 +133,7 @@
 			padding-left: p2r(70);
 			transition: opacity 1s ease 1s;
 			img {
-				width: p2r(214);
+				width: p2r(257);
 			}
 		}
 		.food-intro {
@@ -142,13 +142,6 @@
 			transition: opacity 1s ease 2s;
 			img {
 				width: p2r(603);
-			}
-		}
-		.next-bar {
-			margin-top: p2r(30);
-			text-align: center;
-			.next-btn {
-				width: p2r(95);
 			}
 		}
 	}
@@ -170,6 +163,17 @@
 			opacity: 1;
 		}
 	}
+	
+	.next-bar {
+		width: 100%;
+		position: absolute;
+		left: 0;
+		bottom: p2r(190);
+		text-align: center;
+		.next-btn {
+			width: p2r(95);
+		}
+	}
 
 	.footer {
 		width: p2r(270);
@@ -183,6 +187,7 @@
 </style>
 
 <script>
+	import ScoreService from '../lib/score-service';
 	import '../style/_reset.scss';
 	import '../style/question.scss';
 	export default {
@@ -204,6 +209,10 @@
 				if (this.lock) {
 					return;
 				}
+				if (index == 0) {
+					ScoreService.add();
+					console.log(ScoreService.getScore());
+				}
 				this.showAnswer = index;
 				this.lock = true;
 				setTimeout(() => {
@@ -213,6 +222,9 @@
 			},
 			answerDetail() {
 				this.showDetail = true;
+			},
+			goNext() {
+				this.$emit('nextpage');
 			}
 		}
 	};
