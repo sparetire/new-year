@@ -1,43 +1,22 @@
 <template>
 <div class="page">
 	<div class="container">
-		<img src="../assets/images/food-0.png" class="food">
-		<img src="../assets/images/choose.png" class="choose" v-show="!showAnswerDetail">
-		<transition name="show-question" @after-leave="answerDetail">
-			<div class="answer-bar" v-show="showQuestion" style="display: none">
-				<div class="wrapper">
-					<img src="../assets/images/right.png" class="answer" style="display: none" v-show="showAnswer==0">
-					<div class="placeholder" v-show="lock && showAnswer!=0" style="display: none"></div>
-					<img src="../assets/images/btn-2.png" class="answer-btn" @click="answer(0)">
-				</div>
-				<div class="wrapper">
-					<img src="../assets/images/wrong.png" class="answer" style="display: none" v-show="showAnswer==1">
-					<div class="placeholder" v-show="lock && showAnswer!=1" style="display: none"></div>
-					<img src="../assets/images/btn-0.png" class="answer-btn" @click="answer(1)">
-				</div>
-				<div class="wrapper">
-					<img src="../assets/images/wrong.png" class="answer" style="display: none" v-show="showAnswer==2">
-					<div class="placeholder" v-show="lock && showAnswer!=2" style="display: none"></div>
-					<img src="../assets/images/btn-1.png" class="answer-btn" @click="answer(2)">
-				</div>
-			</div>
-		</transition>
-		<transition name="show-answer">
-			<div class="answer-detail" v-show="showDetail">
-				<div class="location-bar">
-					<img src="../assets/images/location-0.png" class="location">
-				</div>
-				<div class="food-name">
-					<img src="../assets/images/food-name-0.png">
-				</div>
-				<div class="food-intro">
-					<img src="../assets/images/food-intro-0.png">
-				</div>
-			</div>
-		</transition>
-	</div>
-	<div class="next-bar" v-show="showDetail" style="display: none">
-		<img src="../assets/images/next-btn.png" class="next-btn" @click="goNext">
+		<div class="score-bar">
+			<span class="score-num" v-text="score"></span><img class="score" src="../assets/images/score.png">
+		</div>
+		<div class="beat-bar">
+			<img src="../assets/images/beat.png" class="beat"><span class="percent" v-cloak>{{percent}}%</span><img src="../assets/images/people.png" class="people">
+		</div>
+		<div class="desc-bar">
+			<img src="../assets/images/end-desc-0.png" class="end-desc" style="display: none" v-show="status==0">
+			<img src="../assets/images/end-desc-1.png" class="end-desc" style="display: none" v-show="status==1">
+			<img src="../assets/images/end-desc-2.png" class="end-desc" style="display: none" v-show="status==2">
+		</div>
+		<div class="content-bar">
+			<img src="../assets/images/end-content-0.png" class="content" style="display: none" v-show="status==0">
+			<img src="../assets/images/end-content-1.png" class="content" style="display: none" v-show="status==1">
+			<img src="../assets/images/end-content-2.png" class="content" style="display: none" v-show="status==2">
+		</div>
 	</div>
 	<img src="../assets/images/footer.png" class="footer">
 </div>
@@ -46,96 +25,55 @@
 <style lang="sass" scoped>
 	@import '../style/common';
 	@import '../style/flexible';
-	
-	.show-question-enter, .show-question-leave-active {
-		opacity: 0;
-	}
 
-	.show-question-enter-to {
-		opacity: 1;
-	}
-	
-	.answer-bar {
-		margin: p2r(50) p2r(108);
-		display: flex;
-		justify-content: space-between;
-		flex-direction: row;
-		transition: opacity 0.5s ease;
-		.answer {
-			width: p2r(124);
-		}
-		.placeholder {
-			display: inline-block;
-			width: p2r(124);
-			height: p2r(124);
-		}
-		.answer-btn {
-			margin-top: p2r(50);
-			width: p2r(136);
-		}
-		.wrapper {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
-	}
-
-	.answer-detail {
-		width: 100%;
-		margin-top: p2r(20);
-		.location-bar {
-			text-align: center;
-		}
-		.location {
-			width: p2r(193);
-		}
-		.food-name {
-			margin-top: p2r(25);
-			padding-left: p2r(70);
-			transition: opacity 1s ease 1s;
-			img {
-				width: p2r(257);
-			}
-		}
-		.food-intro {
-			margin-top: p2r(25);
-			padding-left: p2r(70);
-			transition: opacity 1s ease 2s;
-			img {
-				width: p2r(603);
-			}
-		}
-	}
-
-	.show-answer-enter {
-		.food-name {
-			opacity: 0;
-		}
-		.food-intro {
-			opacity: 0;
-		}
-	}
-
-	.show-answer-enter-to {
-		.food-name {
-			opacity: 1;
-		}
-		.food-intro {
-			opacity: 1;
-		}
-	}
-	
-	.next-bar {
-		width: 100%;
-		position: absolute;
-		left: 0;
-		bottom: p2r(190);
+	.score-bar {
+		margin-top: p2r(263);
 		text-align: center;
-		z-index: 70;
-		.next-btn {
-			width: p2r(95);
+		.score-num {
+			color: #a32023;
+			font-family: $globalFontFamily;
+			font-weight: 400;
+			@include ft(46px);
+		}
+		.score {
+			width: p2r(40);
+			vertical-align: sub;
 		}
 	}
+
+	.beat-bar {
+		text-align: center;
+		.beat {
+			width: p2r(121);
+			vertical-align: bottom;
+		}
+		.people {
+			width: p2r(81);
+			vertical-align: bottom;
+		}
+		.percent {
+			color: #a32023;
+			font-weight: 300;
+			@include ft(20px);
+		}
+	}
+
+	.desc-bar {
+		margin-top: p2r(565);
+		text-align: center;
+		.end-desc {
+			width: p2r(609);
+		}
+	}
+
+	.content-bar {
+		text-align: center;
+		margin-top: p2r(20);
+		.content {
+			width: p2r(424);
+		}
+	}
+
 </style>
 
 <script>
@@ -145,15 +83,25 @@
 	export default {
 		data() {
 			return {
-				showQuestion: false,
-				showAnswer: -1,
-				lock: false,
-				showAnswerDetail: false,
-				showDetail: false
+				score: 80,
+				percent: 0,
+				status: 0,
+				hasGift: true
 			};
 		},
+		created() {
+			let score = ScoreService.getScore();
+			if (score < 87) {
+				this.status = 0;
+			} else if (score < 100) {
+				this.status = 1;
+			} else if (this.hasGift) {
+				this.status = 2;
+			} else {
+				this.status = 3;
+			}
+		},
 		mounted() {
-			setTimeout(() => this.showQuestion = true, 1000);
 			this.$emit('pagedone');
 		},
 		methods: {

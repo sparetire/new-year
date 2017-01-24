@@ -27,7 +27,7 @@
 	position: absolute;
 	left: 0;
 	right: 0;
-	bottom: p2r(109);
+	bottom: p2r(70);
 }
 
 .page {
@@ -36,4 +36,8 @@
 	position: absolute;
 	top: 0;
 	left: 0;
+}
+
+[v-cloak] {
+	display: none;
 }
