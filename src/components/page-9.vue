@@ -105,6 +105,11 @@
 					next(vm => {
 						vm.percent = (data.percent * 100).toFixed(1);
 						vm.score = score;
+						if (data.hasGift) {
+							setTimeout(() => window.location.href = 'https://jinshuju.net/f/dgSFxZ', 5000);
+						} else {
+							setTimeout(() => vm.$emit('nextpage'), 5000);
+						}
 						if (vm.score < 87) {
 							vm.status = 0;
 						} else if (vm.score < 100) {

@@ -2,7 +2,8 @@
 <div id="app">
 	<img src="../assets/images/bg-0.jpg" v-show="page==0" class="bg">
 	<img src="../assets/images/bg-1.jpg" v-show="page>0 && page<9" class="bg" style="display: none">
-	<img :src="bgUrl || '../images/bg-1.jpg'" v-show="page>8" class="bg" style="display: none">
+	<img :src="bgUrl || '../images/bg-1.jpg'" v-show="page==9" class="bg" style="display: none">
+	<img :src="end || '../images/bg-1.jpg'" v-show="page==10" class="bg" style="display: none">
 	<loading class="loading-ps" :show="show"></loading>
 	<transition name="page" mode="out-in">
 		<router-view @pagedone="pageDone" @nextpage="nextPage"></router-view>
@@ -53,22 +54,25 @@
 	import '../style/_reset.scss';
 	import loading from './loading';
 	import url from '../assets/images/bg-2.jpg';
+	import end from '../assets/images/bg-3.jpg';
 	export default {
 		data() {
 			return {
 				show: true,
 				page: 0,
-				bgUrl: ''
+				bgUrl: '',
+				end: ''
 			};
 		},
 		mounted() {
 			setTimeout(() => {
 				this.bgUrl = url;
+				this.end = end;
 			}, 5000);
 		},
 		watch: {
 			'$route'(to, from) {
-				let num = to.name.match(/\d/g);
+				let num = to.name.match(/\d+/g);
 				if (num.length) {
 					this.page = parseInt(num, 10);
 				}
