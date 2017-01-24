@@ -4,7 +4,7 @@
 		<img src="../assets/images/food-1.png" class="food">
 		<div class="hear-bar" v-show="!showAnswerDetail">
 			<img src="../assets/images/hear-desc.png" class="hear-desc">
-			<img src="../assets/images/hear-btn.png" class="hear-btn">
+			<img src="../assets/images/hear-btn.png" class="hear-btn" @click="playAudio">
 		</div>
 		<transition name="show-question" @after-leave="answerDetail">
 			<div class="answer-bar" v-show="showQuestion" style="display: none">
@@ -43,6 +43,9 @@
 		<img src="../assets/images/next-btn.png" class="next-btn" @click="goNext">
 	</div>
 	<img src="../assets/images/footer.png" class="footer">
+	<audio class="ad" style="display: none">
+		<source src="../assets/audio/changsha.m4a" type="audio/m4a">
+	</audio>
 </div>
 </template>
 
@@ -189,6 +192,7 @@
 
 <script>
 	import ScoreService from '../lib/score-service';
+	import url from '../assets/audio/changsha.m4a';
 	import '../style/_reset.scss';
 	import '../style/question.scss';
 	export default {
@@ -198,10 +202,13 @@
 				showAnswer: -1,
 				lock: false,
 				showAnswerDetail: false,
-				showDetail: false
+				showDetail: false,
+				ad: {}
 			};
 		},
 		mounted() {
+			this.ad = $('.ad')[0];
+			this.ad.src = url;
 			setTimeout(() => this.showQuestion = true, 1000);
 			this.$emit('pagedone');
 		},
@@ -223,6 +230,13 @@
 			},
 			answerDetail() {
 				this.showDetail = true;
+			},
+			playAudio() {
+				if (this.ad.paused) {
+					this.ad.play();
+				} else {
+					this.ad.pause();
+				}
 			},
 			goNext() {
 				this.$emit('nextpage');

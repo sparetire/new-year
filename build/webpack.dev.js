@@ -144,7 +144,7 @@ module.exports = {
 				name: 'fonts/[name].[hash:7].[ext]'
 			}
 		}, {
-			test: /.(mp3|m4a)(\?.*)?/,
+			test: /.(mp3|m4a)$/,
 			loader: 'url',
 			include: APP_PATH,
 			query: {
