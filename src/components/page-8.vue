@@ -1,5 +1,5 @@
 <template>
-<div class="page-8">
+<div class="page">
 	<div class="container">
 		<img src="../assets/images/food-0.png" class="food">
 		<img src="../assets/images/choose.png" class="choose" v-show="!showAnswerDetail">
@@ -46,13 +46,6 @@
 <style lang="sass" scoped>
 	@import '../style/common';
 	@import '../style/flexible';
-	.page-8 {
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
 	
 	.show-question-enter, .show-question-leave-active {
 		opacity: 0;

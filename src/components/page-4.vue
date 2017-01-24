@@ -1,5 +1,5 @@
 <template>
-<div class="page-4">
+<div class="page">
 	<div class="container">
 		<img src="../assets/images/food-3.png" class="food">
 		<div class="hear-bar" v-show="!showAnswerDetail">
@@ -52,13 +52,6 @@
 <style lang="sass" scoped>
 	@import '../style/common';
 	@import '../style/flexible';
-	.page-4 {
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
 	
 	.hear-bar {
 		display: flex;

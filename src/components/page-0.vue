@@ -1,5 +1,5 @@
 <template>
-<div class="page-0">
+<div class="page">
 	<transition name="show-text">
 		<div class="container" v-show="showText">
 			<img src="../assets/images/text-0.png" class="text text-0">
@@ -17,13 +17,6 @@
 <style lang="sass" scoped>
 	@import '../style/common';
 	@import '../style/flexible';
-	.page-0 {
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
 	
 	.container {
 		width: 100%;
