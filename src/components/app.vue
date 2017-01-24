@@ -1,7 +1,8 @@
 <template>
 <div id="app">
 	<img src="../assets/images/bg-0.jpg" v-show="page==0" class="bg">
-	<img src="../assets/images/bg-1.jpg" v-show="page>0" class="bg" style="display: none">
+	<img src="../assets/images/bg-1.jpg" v-show="page>0 && page<8" class="bg" style="display: none">
+	<img :src="bgUrl || '../images/bg-1.jpg'" v-show="page>7" class="bg" style="display: none">
 	<loading class="loading-ps" :show="show"></loading>
 	<transition name="page" mode="out-in">
 		<router-view @pagedone="pageDone" @nextpage="nextPage"></router-view>
@@ -51,12 +52,19 @@
 <script>
 	import '../style/_reset.scss';
 	import loading from './loading';
+	import url from '../assets/images/bg-2.jpg';
 	export default {
 		data() {
 			return {
 				show: true,
-				page: 0
+				page: 0,
+				bgUrl: ''
 			};
+		},
+		mounted() {
+			setTimeout(() => {
+				this.bgUrl = url;
+			}, 5000);
 		},
 		watch: {
 			'$route'(to, from) {

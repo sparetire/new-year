@@ -60,20 +60,6 @@
 		left: 0;
 	}
 	
-	.bg {
-		width: 100%;
-		display: block;
-	}
-	
-	.container {
-		width: 100%;
-		display: block;
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: 10;
-	}
-
 	.hear-bar {
 		display: flex;
 		flex-direction: row;
@@ -178,16 +164,6 @@
 			width: p2r(95);
 		}
 	}
-
-	.footer {
-		width: p2r(270);
-		display: block;
-		margin: auto;
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: p2r(109);
-	}
 </style>
 
 <script>
@@ -219,7 +195,6 @@
 				}
 				if (index == 0) {
 					ScoreService.add();
-					console.log(ScoreService.getScore());
 				}
 				this.showAnswer = index;
 				this.lock = true;

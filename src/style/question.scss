@@ -10,3 +10,22 @@
 	display: block;
 	margin: p2r(30) auto 0;
 }
+
+.container {
+	width: 100%;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+
+.footer {
+	width: p2r(270);
+	display: block;
+	margin: auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: p2r(109);
+}
