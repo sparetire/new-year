@@ -25,7 +25,7 @@ module.exports = {
 	},
 	output: {
 		path: OUTPUT_PATH,
-		publicPath: 'http://localhost:8080/',
+		// publicPath: 'http://localhost:8080/',
 		filename: 'scripts/[name].js?[chunkhash]'
 	},
 	resolve: {

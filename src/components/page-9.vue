@@ -94,7 +94,7 @@
 			let score = ScoreService.getScore();
 			// 回调蠢得一比，但谁让只有这一个请求
 			$.ajax({
-				url: 'http://localhost:3000/percent',
+				url: '/percent',
 				type: 'POST',
 				data: {
 					score
