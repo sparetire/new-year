@@ -1,37 +1,40 @@
 <template>
 <div class="page">
 	<div class="container">
-		<img src="../assets/images/food-5.png" class="food">
-		<img src="../assets/images/choose.png" class="choose" v-show="!showAnswerDetail">
+		<img src="../assets/images/food-3.png" class="food">
+		<div class="hear-bar" v-show="!showAnswerDetail">
+			<img src="../assets/images/hear-desc.png" class="hear-desc">
+			<img src="../assets/images/hear-btn.png" class="hear-btn" @click="playAudio">
+		</div>
 		<transition name="show-question" @after-leave="answerDetail">
 			<div class="answer-bar" v-show="showQuestion" style="display: none">
 				<div class="wrapper">
 					<img src="../assets/images/right.png" class="answer" style="display: none" v-show="showAnswer==0">
 					<div class="placeholder" v-show="lock && showAnswer!=0" style="display: none"></div>
-					<img src="../assets/images/btn-14.png" class="answer-btn" @click="answer(0)">
+					<img src="../assets/images/btn-8.png" class="answer-btn" @click="answer(0)">
 				</div>
 				<div class="wrapper">
 					<img src="../assets/images/wrong.png" class="answer" style="display: none" v-show="showAnswer==1">
 					<div class="placeholder" v-show="lock && showAnswer!=1" style="display: none"></div>
-					<img src="../assets/images/btn-1.png" class="answer-btn" @click="answer(1)">
+					<img src="../assets/images/btn-9.png" class="answer-btn" @click="answer(1)">
 				</div>
 				<div class="wrapper">
 					<img src="../assets/images/wrong.png" class="answer" style="display: none" v-show="showAnswer==2">
 					<div class="placeholder" v-show="lock && showAnswer!=2" style="display: none"></div>
-					<img src="../assets/images/btn-15.png" class="answer-btn" @click="answer(2)">
+					<img src="../assets/images/btn-10.png" class="answer-btn" @click="answer(2)">
 				</div>
 			</div>
 		</transition>
 		<transition name="show-answer">
 			<div class="answer-detail" v-show="showDetail">
 				<div class="location-bar">
-					<img src="../assets/images/location-5.png" class="location">
+					<img src="../assets/images/location-3.png" class="location">
 				</div>
 				<div class="food-name">
-					<img src="../assets/images/food-name-5.png">
+					<img src="../assets/images/food-name-3.png">
 				</div>
 				<div class="food-intro">
-					<img src="../assets/images/food-intro-5.png">
+					<img src="../assets/images/food-intro-3.png">
 				</div>
 			</div>
 		</transition>
@@ -40,6 +43,9 @@
 		<img src="../assets/images/next-btn.png" class="next-btn" @click="goNext">
 	</div>
 	<img src="../assets/images/footer.png" class="footer">
+	<audio class="ad" style="display: none">
+		<source src="../assets/audio/chenzhou.m4a" type="audio/m4a">
+	</audio>
 </div>
 </template>
 
@@ -47,6 +53,21 @@
 	@import '../style/common';
 	@import '../style/flexible';
 	
+	.hear-bar {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		margin-top: p2r(30);
+		padding-left: p2r(99);
+		.hear-desc {
+			width: p2r(234);
+		}
+		.hear-btn {
+			width: p2r(263);
+			margin-left: p2r(55);
+		}
+	}
+
 	.show-question-enter, .show-question-leave-active {
 		opacity: 0;
 	}
@@ -56,7 +77,7 @@
 	}
 	
 	.answer-bar {
-		margin: p2r(50) p2r(108);
+		margin: p2r(35) p2r(108);
 		display: flex;
 		justify-content: space-between;
 		flex-direction: row;
@@ -140,6 +161,7 @@
 
 <script>
 	import ScoreService from '../lib/score-service';
+	import url from '../assets/audio/chenzhou.m4a';
 	import '../style/_reset.scss';
 	import '../style/question.scss';
 	export default {
@@ -149,10 +171,13 @@
 				showAnswer: -1,
 				lock: false,
 				showAnswerDetail: false,
-				showDetail: false
+				showDetail: false,
+				ad: {}
 			};
 		},
 		mounted() {
+			this.ad = $('.ad')[0];
+			this.ad.src = url;
 			setTimeout(() => this.showQuestion = true, 1000);
 			this.$emit('pagedone');
 		},
@@ -173,6 +198,13 @@
 			},
 			answerDetail() {
 				this.showDetail = true;
+			},
+			playAudio() {
+				if (this.ad.paused) {
+					this.ad.play();
+				} else {
+					this.ad.pause();
+				}
 			},
 			goNext() {
 				this.$emit('nextpage');

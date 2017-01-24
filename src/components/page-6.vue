@@ -1,37 +1,37 @@
 <template>
 <div class="page">
 	<div class="container">
-		<img src="../assets/images/food-6.png" class="food">
+		<img src="../assets/images/food-5.png" class="food">
 		<img src="../assets/images/choose.png" class="choose" v-show="!showAnswerDetail">
 		<transition name="show-question" @after-leave="answerDetail">
 			<div class="answer-bar" v-show="showQuestion" style="display: none">
 				<div class="wrapper">
 					<img src="../assets/images/right.png" class="answer" style="display: none" v-show="showAnswer==0">
 					<div class="placeholder" v-show="lock && showAnswer!=0" style="display: none"></div>
-					<img src="../assets/images/btn-16.png" class="answer-btn" @click="answer(0)">
+					<img src="../assets/images/btn-14.png" class="answer-btn" @click="answer(0)">
 				</div>
 				<div class="wrapper">
 					<img src="../assets/images/wrong.png" class="answer" style="display: none" v-show="showAnswer==1">
 					<div class="placeholder" v-show="lock && showAnswer!=1" style="display: none"></div>
-					<img src="../assets/images/btn-6.png" class="answer-btn" @click="answer(1)">
+					<img src="../assets/images/btn-1.png" class="answer-btn" @click="answer(1)">
 				</div>
 				<div class="wrapper">
 					<img src="../assets/images/wrong.png" class="answer" style="display: none" v-show="showAnswer==2">
 					<div class="placeholder" v-show="lock && showAnswer!=2" style="display: none"></div>
-					<img src="../assets/images/btn-17.png" class="answer-btn" @click="answer(2)">
+					<img src="../assets/images/btn-15.png" class="answer-btn" @click="answer(2)">
 				</div>
 			</div>
 		</transition>
 		<transition name="show-answer">
 			<div class="answer-detail" v-show="showDetail">
 				<div class="location-bar">
-					<img src="../assets/images/location-6.png" class="location">
+					<img src="../assets/images/location-5.png" class="location">
 				</div>
 				<div class="food-name">
-					<img src="../assets/images/food-name-6.png">
+					<img src="../assets/images/food-name-5.png">
 				</div>
 				<div class="food-intro">
-					<img src="../assets/images/food-intro-6.png">
+					<img src="../assets/images/food-intro-5.png">
 				</div>
 			</div>
 		</transition>

@@ -1,8 +1,8 @@
 <template>
 <div id="app">
 	<img src="../assets/images/bg-0.jpg" v-show="page==0" class="bg">
-	<img src="../assets/images/bg-1.jpg" v-show="page>0 && page<8" class="bg" style="display: none">
-	<img :src="bgUrl || '../images/bg-1.jpg'" v-show="page>7" class="bg" style="display: none">
+	<img src="../assets/images/bg-1.jpg" v-show="page>0 && page<9" class="bg" style="display: none">
+	<img :src="bgUrl || '../images/bg-1.jpg'" v-show="page>8" class="bg" style="display: none">
 	<loading class="loading-ps" :show="show"></loading>
 	<transition name="page" mode="out-in">
 		<router-view @pagedone="pageDone" @nextpage="nextPage"></router-view>
@@ -78,7 +78,7 @@
 			nextPage() {
 				this.show = true;
 				++this.page;
-				this.$router.push(`page-${this.page}`);
+				this.$router.replace(`page-${this.page}`);
 			},
 			pageDone() {
 				this.show = false;

@@ -161,7 +161,7 @@
 				if (this.lock) {
 					return;
 				}
-				if (index == 0) {
+				if (index == 2) {
 					ScoreService.add();
 				}
 				this.showAnswer = index;

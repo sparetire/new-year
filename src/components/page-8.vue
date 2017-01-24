@@ -1,107 +1,184 @@
 <template>
 <div class="page">
 	<div class="container">
-		<div class="score-bar">
-			<span class="score-num" v-text="score"></span><img class="score" src="../assets/images/score.png">
+		<img src="../assets/images/food-7.png" class="food">
+		<div class="hear-bar" v-show="!showAnswerDetail">
+			<img src="../assets/images/hear-desc.png" class="hear-desc">
+			<img src="../assets/images/hear-btn.png" class="hear-btn" @click="playAudio">
 		</div>
-		<div class="beat-bar">
-			<img src="../assets/images/beat.png" class="beat"><span class="percent" v-cloak>{{percent}}%</span><img src="../assets/images/people.png" class="people">
-		</div>
-		<div class="desc-bar">
-			<img src="../assets/images/end-desc-0.png" class="end-desc" style="display: none" v-show="status==0">
-			<img src="../assets/images/end-desc-1.png" class="end-desc" style="display: none" v-show="status==1">
-			<img src="../assets/images/end-desc-2.png" class="end-desc" style="display: none" v-show="status==2">
-		</div>
-		<div class="content-bar">
-			<img src="../assets/images/end-content-0.png" class="content" style="display: none" v-show="status==0">
-			<img src="../assets/images/end-content-1.png" class="content" style="display: none" v-show="status==1">
-			<img src="../assets/images/end-content-2.png" class="content" style="display: none" v-show="status==2">
-		</div>
+		<transition name="show-question" @after-leave="answerDetail">
+			<div class="answer-bar" v-show="showQuestion" style="display: none">
+				<div class="wrapper">
+					<img src="../assets/images/right.png" class="answer" style="display: none" v-show="showAnswer==0">
+					<div class="placeholder" v-show="lock && showAnswer!=0" style="display: none"></div>
+					<img src="../assets/images/btn-18.png" class="answer-btn" @click="answer(0)">
+				</div>
+				<div class="wrapper">
+					<img src="../assets/images/wrong.png" class="answer" style="display: none" v-show="showAnswer==1">
+					<div class="placeholder" v-show="lock && showAnswer!=1" style="display: none"></div>
+					<img src="../assets/images/btn-19.png" class="answer-btn" @click="answer(1)">
+				</div>
+				<div class="wrapper">
+					<img src="../assets/images/wrong.png" class="answer" style="display: none" v-show="showAnswer==2">
+					<div class="placeholder" v-show="lock && showAnswer!=2" style="display: none"></div>
+					<img src="../assets/images/btn-20.png" class="answer-btn" @click="answer(2)">
+				</div>
+			</div>
+		</transition>
+		<transition name="show-answer">
+			<div class="answer-detail" v-show="showDetail">
+				<div class="location-bar">
+					<img src="../assets/images/location-7.png" class="location">
+				</div>
+				<div class="food-name">
+					<img src="../assets/images/food-name-7.png">
+				</div>
+				<div class="food-intro">
+					<img src="../assets/images/food-intro-7.png">
+				</div>
+			</div>
+		</transition>
+	</div>
+	<div class="next-bar" v-show="showDetail" style="display: none">
+		<img src="../assets/images/btn-21.png" class="next-btn" @click="goNext">
 	</div>
 	<img src="../assets/images/footer.png" class="footer">
+	<audio class="ad" style="display: none">
+		<source src="../assets/audio/changde.m4a" type="audio/m4a">
+	</audio>
 </div>
 </template>
 
 <style lang="sass" scoped>
 	@import '../style/common';
 	@import '../style/flexible';
-
-	.score-bar {
-		margin-top: p2r(263);
-		text-align: center;
-		.score-num {
-			color: #a32023;
-			font-family: $globalFontFamily;
-			font-weight: 400;
-			@include ft(46px);
+	
+	.hear-bar {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		margin-top: p2r(30);
+		padding-left: p2r(99);
+		.hear-desc {
+			width: p2r(234);
 		}
-		.score {
-			width: p2r(40);
-			vertical-align: sub;
-		}
-	}
-
-	.beat-bar {
-		text-align: center;
-		.beat {
-			width: p2r(121);
-			vertical-align: bottom;
-		}
-		.people {
-			width: p2r(81);
-			vertical-align: bottom;
-		}
-		.percent {
-			color: #a32023;
-			font-weight: 300;
-			@include ft(20px);
+		.hear-btn {
+			width: p2r(263);
+			margin-left: p2r(55);
 		}
 	}
 
-	.desc-bar {
-		margin-top: p2r(565);
-		text-align: center;
-		.end-desc {
-			width: p2r(609);
+	.show-question-enter, .show-question-leave-active {
+		opacity: 0;
+	}
+
+	.show-question-enter-to {
+		opacity: 1;
+	}
+	
+	.answer-bar {
+		margin: p2r(35) p2r(108);
+		display: flex;
+		justify-content: space-between;
+		flex-direction: row;
+		transition: opacity 0.5s ease;
+		.answer {
+			width: p2r(124);
+		}
+		.placeholder {
+			display: inline-block;
+			width: p2r(124);
+			height: p2r(124);
+		}
+		.answer-btn {
+			margin-top: p2r(50);
+			width: p2r(136);
+		}
+		.wrapper {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 		}
 	}
 
-	.content-bar {
-		text-align: center;
+	.answer-detail {
+		width: 100%;
 		margin-top: p2r(20);
-		.content {
-			width: p2r(424);
+		.location-bar {
+			text-align: center;
+		}
+		.location {
+			width: p2r(193);
+		}
+		.food-name {
+			margin-top: p2r(25);
+			padding-left: p2r(70);
+			transition: opacity 1s ease 1s;
+			img {
+				width: p2r(257);
+			}
+		}
+		.food-intro {
+			margin-top: p2r(25);
+			padding-left: p2r(70);
+			transition: opacity 1s ease 2s;
+			img {
+				width: p2r(603);
+			}
 		}
 	}
 
+	.show-answer-enter {
+		.food-name {
+			opacity: 0;
+		}
+		.food-intro {
+			opacity: 0;
+		}
+	}
+
+	.show-answer-enter-to {
+		.food-name {
+			opacity: 1;
+		}
+		.food-intro {
+			opacity: 1;
+		}
+	}
+	
+	.next-bar {
+		width: 100%;
+		position: absolute;
+		left: 0;
+		bottom: p2r(170);
+		text-align: center;
+		z-index: 70;
+		.next-btn {
+			width: p2r(95);
+		}
+	}
 </style>
 
 <script>
 	import ScoreService from '../lib/score-service';
+	import url from '../assets/audio/changde.m4a';
 	import '../style/_reset.scss';
 	import '../style/question.scss';
 	export default {
 		data() {
 			return {
-				score: 80,
-				percent: 0,
-				status: 0,
-				hasGift: true
+				showQuestion: false,
+				showAnswer: -1,
+				lock: false,
+				showAnswerDetail: false,
+				showDetail: false,
+				ad: {}
 			};
 		},
-		created() {
-			let score = ScoreService.getScore();
-			if (score < 87) {
-				this.status = 0;
-			} else if (score < 100) {
-				this.status = 1;
-			} else if (this.hasGift) {
-				this.status = 2;
-			} else {
-				this.status = 3;
-			}
-		},
 		mounted() {
+			this.ad = $('.ad')[0];
+			this.ad.src = url;
+			setTimeout(() => this.showQuestion = true, 1000);
 			this.$emit('pagedone');
 		},
 		methods: {
@@ -121,6 +198,13 @@
 			},
 			answerDetail() {
 				this.showDetail = true;
+			},
+			playAudio() {
+				if (this.ad.paused) {
+					this.ad.play();
+				} else {
+					this.ad.pause();
+				}
 			},
 			goNext() {
 				this.$emit('nextpage');
