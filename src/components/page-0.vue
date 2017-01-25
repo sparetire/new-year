@@ -61,12 +61,14 @@
 		position: absolute;
 		left: p2r(64);
 		bottom: p2r(46);
+		z-index: 99;
 	}
 	.logo-1 {
 		width: p2r(300);
 		position: absolute;
 		right: p2r(64);
 		bottom: p2r(62);
+		z-index: 99;
 	}
 </style>
 
