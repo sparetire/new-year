@@ -59,6 +59,7 @@
 		data() {
 			return {
 				show: true,
+				pageLock: false,
 				page: 0,
 				bgUrl: '',
 				end: ''
@@ -80,11 +81,14 @@
 		},
 		methods: {
 			nextPage() {
+				if (this.pageLock) return;
+				this.pageLock = true;
 				this.show = true;
 				++this.page;
 				this.$router.replace(`page-${this.page}`);
 			},
 			pageDone() {
+				this.pageLock = false;
 				this.show = false;
 			}
 		},
