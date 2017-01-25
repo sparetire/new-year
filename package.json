@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "mock": "pm2 start process.json",
     "build-dev": "webpack --config build/webpack.dev.js",
-    "build-prod": "webpack --config build/webpack.prod.js",
+    "build-prod": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js",
     "start-dev": "cross-env NODE_ENV=dev node start.js",
     "start-prod": "cross-env NODE_ENV=prod node start.js"
   },

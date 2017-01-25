@@ -161,7 +161,7 @@
 
 <script>
 	import ScoreService from '../lib/score-service';
-	import url from '../assets/audio/changsha.m4a';
+	import url from '../assets/audio/changsha.mp3';
 	import '../style/_reset.scss';
 	import '../style/question.scss';
 	export default {
