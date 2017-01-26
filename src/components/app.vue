@@ -8,7 +8,7 @@
 	<transition name="page" mode="out-in">
 		<router-view @pagedone="pageDone" @nextpage="nextPage"></router-view>
 	</transition>
-	<audio class="bgm" style="display: none" loop="loop">
+	<audio class="bgm" style="display: none" loop="loop" autoplay>
 		<source src="../assets/audio/bg.m4a" type="audio/m4a">
 	</audio>
 </div>
@@ -71,12 +71,15 @@
 			};
 		},
 		mounted() {
+			let ctx = this;
 			this.bgm = $('.bgm')[0];
+			$('#app').on('touchend', () => {
+				if (ctx.bgm.paused) {
+					ctx.bgm.play();
+				}
+			});
 			setTimeout(() => {
 				this.bgm.src = bgm;
-				if (this.bgm.paused) {
-					this.bgm.play();
-				}
 			}, 2000);
 			setTimeout(() => {
 				this.bgUrl = url;
