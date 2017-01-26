@@ -27,22 +27,22 @@
 		z-index: 10;
 		.text {
 			width: 100%;
-			transition: opacity 2s ease;
+			transition: opacity 1s ease;
 		}
 		.text-0 {
 			margin-top: p2r(928);
 		}
 		.text-1 {
-			transition-delay: 1.5s;
+			transition-delay: 1s;
 		}
 		.text-2 {
-			transition-delay: 3s;
+			transition-delay: 2s;
 		}
 		.text-3 {
-			transition-delay: 4.5s;
+			transition-delay: 3s;
 		}
 		.text-4 {
-			transition-delay: 6s;
+			transition-delay: 4s;
 		}
 	}
 
@@ -82,7 +82,7 @@
 		},
 		mounted() {
 			setTimeout(() => this.showText = true, 1000);
-			setTimeout(() => this.$emit('nextpage'), 10000);
+			setTimeout(() => this.$emit('nextpage'), 7000);
 			this.$emit('pagedone');
 		}
 	};

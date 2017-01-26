@@ -113,7 +113,7 @@
 		.food-name {
 			margin-top: p2r(25);
 			padding-left: p2r(70);
-			transition: opacity 1s ease 1s;
+			transition: opacity 1s ease 0.5s;
 			img {
 				width: p2r(257);
 			}
@@ -121,7 +121,7 @@
 		.food-intro {
 			margin-top: p2r(25);
 			padding-left: p2r(70);
-			transition: opacity 1s ease 2s;
+			transition: opacity 1s ease 1.5s;
 			img {
 				width: p2r(603);
 			}
