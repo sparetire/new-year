@@ -8,6 +8,9 @@
 	<transition name="page" mode="out-in">
 		<router-view @pagedone="pageDone" @nextpage="nextPage"></router-view>
 	</transition>
+	<audio class="bgm" style="display: none" loop="loop">
+		<source src="../assets/audio/bg.m4a" type="audio/m4a">
+	</audio>
 </div>
 </template>
 
@@ -55,6 +58,7 @@
 	import loading from './loading';
 	import url from '../assets/images/bg-2.jpg';
 	import end from '../assets/images/bg-3.jpg';
+	import bgm from '../assets/audio/bg.mp3';
 	export default {
 		data() {
 			return {
@@ -62,10 +66,18 @@
 				pageLock: false,
 				page: 0,
 				bgUrl: '',
-				end: ''
+				end: '',
+				bgm: {}
 			};
 		},
 		mounted() {
+			this.bgm = $('.bgm')[0];
+			setTimeout(() => {
+				this.bgm.src = bgm;
+				if (this.bgm.paused) {
+					this.bgm.play();
+				}
+			}, 2000);
 			setTimeout(() => {
 				this.bgUrl = url;
 				this.end = end;
